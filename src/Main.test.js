@@ -1,28 +1,22 @@
 import { initializeTimes, updateTimes } from './Main';
 
-test('initializeTimes returns the expected available times', () => {
-  const expectedTimes = [
-    '17:00',
-    '18:00',
-    '19:00',
-    '20:00',
-    '21:00',
-  ];
+test('initializeTimes returns a non-empty array of available times', () => {
+  const times = initializeTimes();
 
-  expect(initializeTimes()).toEqual(expectedTimes);
+  expect(Array.isArray(times)).toBe(true);
+  expect(times.length).toBeGreaterThan(0);
 });
 
-test('updateTimes returns the same state provided', () => {
-  const state = [
-    '17:00',
-    '18:00',
-    '19:00',
-  ];
+test('updateTimes returns available times for the selected date', () => {
+  const state = [];
 
   const action = {
     type: 'update_times',
     date: '2026-09-26',
   };
 
-  expect(updateTimes(state, action)).toEqual(state);
+  const times = updateTimes(state, action);
+
+  expect(Array.isArray(times)).toBe(true);
+  expect(times.length).toBeGreaterThan(0);
 });

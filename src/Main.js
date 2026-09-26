@@ -1,14 +1,21 @@
 import { useReducer } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import HomePage from './HomePage';
 import BookingPage from './BookingPage';
 import ConfirmedBooking from './ConfirmedBooking';
+import { fetchAPI, submitAPI } from './api';
 
 export const initializeTimes = () => {
-  return ['17:00', '18:00', '19:00', '20:00', '21:00'];
+  const today = new Date();
+  return fetchAPI(today);
 };
 
 export const updateTimes = (state, action) => {
+  if (action.type === 'update_times') {
+    const selectedDate = new Date(action.date);
+    return fetchAPI(selectedDate);
+  }
+
   return state;
 };
 
@@ -18,6 +25,16 @@ function Main() {
     [],
     initializeTimes
   );
+
+  const navigate = useNavigate();
+
+  const submitForm = (formData) => {
+    const success = submitAPI(formData);
+
+    if (success) {
+      navigate('/confirmed');
+    }
+  };
 
   return (
     <main>
@@ -30,6 +47,7 @@ function Main() {
             <BookingPage
               availableTimes={availableTimes}
               dispatch={dispatch}
+              submitForm={submitForm}
             />
           }
         />
