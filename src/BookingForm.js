@@ -92,6 +92,12 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
         <option value="Anniversary">Anniversary</option>
       </select>
 
+      {!isFormValid && (
+        <p className="form-error">
+          Please complete all fields with valid information before submitting.
+        </p>
+      )}
+
       <button
         type="submit"
         disabled={!isFormValid}

@@ -5,11 +5,13 @@ import BookingPage from './BookingPage';
 import ConfirmedBooking from './ConfirmedBooking';
 import { fetchAPI, submitAPI } from './api';
 
+// Load available booking times for today's date
 export const initializeTimes = () => {
   const today = new Date();
   return fetchAPI(today);
 };
 
+// Update available times when the user selects a new date
 export const updateTimes = (state, action) => {
   if (action.type === 'update_times') {
     const selectedDate = new Date(action.date);
@@ -28,6 +30,7 @@ function Main() {
 
   const navigate = useNavigate();
 
+  // Submit booking data to the API and navigate on success
   const submitForm = (formData) => {
     const success = submitAPI(formData);
 

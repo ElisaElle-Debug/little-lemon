@@ -56,7 +56,7 @@ test('submit button is disabled when the form is invalid', () => {
   renderBookingForm();
 
   const submitButton = screen.getByRole('button', {
-    name: 'Make Your Reservation',
+    name: 'On Click',
   });
 
   expect(submitButton).toBeDisabled();
@@ -72,7 +72,7 @@ test('submit button is enabled when the form is valid', () => {
   });
 
   const submitButton = screen.getByRole('button', {
-    name: 'Make Your Reservation',
+    name: 'On Click',
   });
 
   expect(submitButton).toBeEnabled();

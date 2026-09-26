@@ -375,6 +375,12 @@ ul {
   border-color: #495E57;
 }
 
+.form-error {
+  color: #b00020;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
 .booking-form button {
   margin-top: 10px;
   background: #F4CE14;
@@ -387,8 +393,14 @@ ul {
   cursor: pointer;
 }
 
-.booking-form button:hover {
+.booking-form button:hover:not(:disabled) {
   background: #e3bd00;
+}
+
+.booking-form button:disabled {
+  background: #d8d8d8;
+  color: #777;
+  cursor: not-allowed;
 }
 
 /* CONFIRMATION PAGE */
