@@ -17,16 +17,17 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
     });
   };
 
+  const isFormValid =
+    date !== '' &&
+    time !== '' &&
+    guests >= 1 &&
+    guests <= 10 &&
+    occasion !== '';
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!date) {
-      alert('Please choose a reservation date.');
-      return;
-    }
-
-    if (guests < 1 || guests > 10) {
-      alert('Guests must be between 1 and 10.');
+    if (!isFormValid) {
       return;
     }
 
@@ -41,7 +42,11 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
   };
 
   return (
-    <form className="booking-form" onSubmit={handleSubmit}>
+    <form
+      className="booking-form"
+      onSubmit={handleSubmit}
+      aria-label="Table reservation form"
+    >
       <label htmlFor="res-date">Choose date</label>
       <input
         type="date"
@@ -81,12 +86,17 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
         id="occasion"
         value={occasion}
         onChange={(e) => setOccasion(e.target.value)}
+        required
       >
-        <option>Birthday</option>
-        <option>Anniversary</option>
+        <option value="Birthday">Birthday</option>
+        <option value="Anniversary">Anniversary</option>
       </select>
 
-      <button type="submit">
+      <button
+        type="submit"
+        disabled={!isFormValid}
+        aria-label="On Click"
+      >
         Make Your Reservation
       </button>
     </form>
