@@ -4,22 +4,11 @@ import HomePage from './HomePage';
 import BookingPage from './BookingPage';
 import ConfirmedBooking from './ConfirmedBooking';
 
-const initializeTimes = () => {
+export const initializeTimes = () => {
   return ['17:00', '18:00', '19:00', '20:00', '21:00'];
 };
 
-const updateTimes = (state, action) => {
-  if (action.type === 'update_times') {
-    const selectedDate = new Date(action.date);
-    const day = selectedDate.getDay();
-
-    if (day === 5 || day === 6) {
-      return ['17:00', '17:30', '18:30', '19:30', '20:30', '21:30'];
-    }
-
-    return ['17:00', '18:00', '19:00', '20:00', '21:00'];
-  }
-
+export const updateTimes = (state, action) => {
   return state;
 };
 
